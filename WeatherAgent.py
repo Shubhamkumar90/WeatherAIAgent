@@ -5,7 +5,7 @@ from livekit.agents.voice import Agent, AgentSession
 from livekit.plugins import silero
 import requests
 import os
-
+import time
 load_dotenv('.env')
 
 logging.getLogger("livekit.agents").setLevel(logging.ERROR)
@@ -35,9 +35,9 @@ class WeatherListenAndRespondAgent(Agent):
                 Rules:
                 - If the user asks anything weather-related, always use the appropriate tool.
                 - For questions about “today”, “right now”, “currently” → use `get_weather`.
-                - For questions with “tomorrow”, “next week”, “later”, “forecast” → use `get_weather_forecast`.
                 - If the tool returns an error message, repeat it politely.
                 - Never ask the user to specify the city again unless it's truly missing.
+                - Forcasting api can give you forcast upto 16 day.
             """,
             stt="assemblyai/universal-streaming",
             llm="openai/gpt-4.1-mini",
@@ -54,7 +54,7 @@ class WeatherListenAndRespondAgent(Agent):
         data = r.json()
         # print(data)
         if data.get("cod") != 200:
-            return f"Sorry, I could not find weather for {city}."
+            return {"msg":f"Sorry, I could not find weather for {city}."}
 
         # weather = data["weather"][0]["description"]
         # temp = data["main"]["temp"]
@@ -69,12 +69,16 @@ class WeatherListenAndRespondAgent(Agent):
         url = f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&metric&cnt={day}"
         r = requests.get(url)
         data = r.json()
+        # print(data)
         if int(data.get("cod")) != 200:
-            print("problem")
-            return f"Sorry, I could not find weather for {city}."
+            return {"msg":f"Sorry, I could not find weather for {city}."}
 
         return data
     
+    @function_tool
+    async def get_today_date(self)->any:
+        return time.strftime("%Y-%m-%d")
+
     async def on_enter(self):
         self.session.generate_reply()
 
