@@ -64,9 +64,9 @@ class WeatherListenAndRespondAgent(Agent):
     
 
     @function_tool
-    async def get_weather_forcast(self,context:RunContext,city: str)->any:
+    async def get_weather_forcast(self,context:RunContext,city: str,day:int)->any:
         api_key = os.getenv("OPENWEATHER_API_KEY")
-        url = f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&metric&cnt=3"
+        url = f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&metric&cnt={day}"
         r = requests.get(url)
         data = r.json()
         if int(data.get("cod")) != 200:
