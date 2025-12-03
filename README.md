@@ -28,6 +28,16 @@ The assistant listens to the user, extracts the city name, calls the weather API
   - “Will it rain tomorrow in Pune?”
 
 
+## Tech Stack
+
+![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)
+![LiveKit](https://img.shields.io/badge/LiveKit-Voice_Agents-orange)
+![AssemblyAI](https://img.shields.io/badge/AssemblyAI-STT-purple)
+![Cartesia](https://img.shields.io/badge/Cartesia-TTS-pink)
+![Silero](https://img.shields.io/badge/Silero-VAD-green)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT_4.1_Mini-black)
+![Weather API](https://img.shields.io/badge/OpenWeatherMap-API-blue)
+
 
 
 ## 🛠️ Setup & Installation
@@ -75,4 +85,3 @@ Fetches current weather from OpenWeatherMap.
 
 ### `get_weather_forecast(city)`
 Fetches forecast weather (e.g., tomorrow, next days).
-
