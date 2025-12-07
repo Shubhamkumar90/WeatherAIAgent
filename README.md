@@ -51,7 +51,7 @@ cd WeatherAIAgent
 Create a .env file.
 
 To get LIVEKIT keys, you have to create a account in <a href=https://livekit.io/>livekit</a> and create a project, then click on the project api key.
-``` ini
+``` env
 OPENWEATHER_API_KEY=your_api_key
 LIVEKIT_API_KEY=your_livekit_key
 LIVEKIT_API_SECRET=your_key
