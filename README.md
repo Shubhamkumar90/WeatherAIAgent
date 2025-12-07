@@ -16,7 +16,7 @@ The assistant listens to the user, extracts the city name, calls the weather API
 - Uses **OpenWeatherMap** API
 - Supports:
   - Current weather  
-  - Short-term forecast
+  - Short-term forecast (upto 16 days)
 - Automatic city extraction via LLM
 - Natural, human-friendly spoken responses
 
